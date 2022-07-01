@@ -173,7 +173,7 @@ updateSpirit = (
                   {makeRange(this.pc.attributes.min_spirit, this.pc.attributes.max_spirit).map( (value: number) => {
                     return (
                       //@ts-ignore
-                      <option key={value} value={value - this.pc.attributes.max_spirit}>{get_dice_value(value, 0)}</option>
+                      <option key={value} value={value - this.pc.attributes.boosted_spirit}>{get_dice_value(value, 0)}</option>
                     )
                   })}
                 </select>
