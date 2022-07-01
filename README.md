@@ -1,4 +1,4 @@
-# savaged-rust-wasm-tes
+# Savaged Rust wasm-bindgen Test
 
 This is a public work in progress proof of concept testing for possibly savaged.us version 4
 
