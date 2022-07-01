@@ -1,0 +1,1 @@
+All code here rights are reserved by the author.
