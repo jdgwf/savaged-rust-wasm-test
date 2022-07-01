@@ -120,7 +120,7 @@ updateSpirit = (
 
         {this.pc && this.pc.attributes ? (
           <>
-          <h2>Attribute Selection</h2>
+          <h2>Presto-Chango Controls</h2>
           <label>
             Set Name:<br />
             <input

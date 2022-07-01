@@ -42,6 +42,10 @@ if( window && window.indexedDB && !db ) {
 
         <AttributesTest />
 
+    <hr />
+    <div style={{textAlign: "center"}}>
+      Code Repo at <a href="https://github.com/jdgwf/savaged-rust-wasm-test">https://github.com/jdgwf/savaged-rust-wasm-test</a>
+    </div>
     </div>
   );
 
