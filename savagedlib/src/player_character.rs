@@ -25,6 +25,12 @@ pub struct PlayerCharacter {
 
     #[wasm_bindgen(skip)]
     pub selected_hindrances: Vec< Hindrance >,
+
+    #[wasm_bindgen(skip)]
+    pub added_edges: Vec< Edge >,
+
+    #[wasm_bindgen(skip)]
+    pub added_hindrances: Vec< Hindrance >,
     // date_created:  DateTime<Utc>,
     // date_modified:  DateTime<Utc>,
     // date_deleted:  DateTime<Utc>,
@@ -50,46 +56,15 @@ impl PlayerCharacter {
         self.attributes.selected_vigor = new_val;
     }
 
-    pub fn set_attribute_boosted_agility( &mut self, new_val: u8 ) {
-        self.attributes.min_agility = new_val + 1;
-        self.attributes.max_agility = new_val + 5;
-        self.attributes.boosted_agility = new_val;
-    }
-    pub fn set_attribute_boosted_smarts( &mut self, new_val: u8 ) {
-        self.attributes.min_smarts = new_val + 1;
-        self.attributes.max_smarts = new_val + 5;
-        self.attributes.boosted_smarts = new_val;
-    }
-    pub fn set_attribute_boosted_spirit( &mut self, new_val: u8 ) {
-        self.attributes.min_spirit = new_val + 1;
-        self.attributes.max_spirit = new_val + 5;
-        self.attributes.boosted_spirit = new_val;
-    }
-    pub fn set_attribute_boosted_strength( &mut self, new_val: u8 ) {
-        self.attributes.min_strength = new_val + 1;
-        self.attributes.max_strength = new_val + 5;
-        self.attributes.boosted_strength = new_val;
-    }
-    pub fn set_attribute_boosted_vigor( &mut self, new_val: u8 ) {
-        self.attributes.min_vigor = new_val + 1;
-        self.attributes.max_vigor = new_val + 5;
-        self.attributes.boosted_vigor = new_val;
+    pub fn calc( &mut self ) {
+        self._calc_reset();
     }
 
-    pub fn set_attribute_bonus_agility( &mut self, new_val: i8 ) {
-        self.attributes.bonus_agility = new_val;
-    }
-    pub fn set_attribute_bonus_smarts( &mut self, new_val: i8 ) {
-        self.attributes.bonus_smarts = new_val;
-    }
-    pub fn set_attribute_bonus_spirit( &mut self, new_val: i8 ) {
-        self.attributes.bonus_spirit = new_val;
-    }
-    pub fn set_attribute_bonus_strength( &mut self, new_val: i8 ) {
-        self.attributes.bonus_strength = new_val;
-    }
-    pub fn set_attribute_bonus_vigor( &mut self, new_val: i8 ) {
-        self.attributes.bonus_vigor = new_val;
+    fn _calc_reset( &mut self ) {
+        self.attributes.reset();
+
+        self.added_edges = Vec::new();
+        self.added_hindrances = Vec::new();
     }
 }
 
@@ -99,17 +74,22 @@ impl PlayerCharacter {
     #[wasm_bindgen(constructor)]
     pub fn new() -> PlayerCharacter {
         //use the . operator to fetch the value of a field via the self keyword
-        PlayerCharacter{
+        let mut pc = PlayerCharacter{
             name: "".to_string(),
             uuid: Uuid::new_v4(),
             attributes: Attributes::new(),
             selected_edges: Vec::new(),
             selected_hindrances: Vec::new(),
+            added_edges: Vec::new(),
+            added_hindrances: Vec::new(),
             // date_created: Utc::now(),
             // date_modified: Utc::now(),
             // date_deleted: Utc::now(),
             deleted: false,
-        }
+        };
+
+        pc.calc();
+        pc
     }
 
     #[wasm_bindgen(setter)]

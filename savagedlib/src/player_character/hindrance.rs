@@ -1,11 +1,15 @@
 use wasm_bindgen::prelude::*;
 use uuid::{Uuid};
+use crate::player_character::PlayerCharacter;
 
 #[wasm_bindgen]
 pub struct Hindrance {
-    name: String,
-    uuid: Uuid,
+    #[wasm_bindgen(skip)]
+    pub name: String,
+    #[wasm_bindgen(skip)]
+    pub uuid: Uuid,
 }
+
 
 #[wasm_bindgen]
 impl Hindrance {
@@ -17,6 +21,13 @@ impl Hindrance {
             uuid: Uuid::new_v4(),
         }
     }
+    pub fn apply( mut char_obj: &PlayerCharacter ) {
+
+    }
+}
+// WASM Bindgen Getters/Setters
+#[wasm_bindgen]
+impl Hindrance {
 
     #[wasm_bindgen(setter)]
     pub fn set_name( &mut self, new_name: String) {
