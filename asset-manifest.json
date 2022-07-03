@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/savaged-rust-wasm-test/static/css/main.073c9b0a.css",
-    "main.js": "/savaged-rust-wasm-test/static/js/main.5a7e7a91.js",
+    "main.js": "/savaged-rust-wasm-test/static/js/main.81f1cf49.js",
     "static/js/787.bf041ad7.chunk.js": "/savaged-rust-wasm-test/static/js/787.bf041ad7.chunk.js",
-    "static/media/savagedlib_bg.wasm": "/savaged-rust-wasm-test/static/media/savagedlib_bg.7ac3ea8aba47d6286c59.wasm",
+    "static/media/savaged_libs_bg.wasm": "/savaged-rust-wasm-test/static/media/savaged_libs_bg.ad3da882bca80942111a.wasm",
     "index.html": "/savaged-rust-wasm-test/index.html",
     "main.073c9b0a.css.map": "/savaged-rust-wasm-test/static/css/main.073c9b0a.css.map",
-    "main.5a7e7a91.js.map": "/savaged-rust-wasm-test/static/js/main.5a7e7a91.js.map",
+    "main.81f1cf49.js.map": "/savaged-rust-wasm-test/static/js/main.81f1cf49.js.map",
     "787.bf041ad7.chunk.js.map": "/savaged-rust-wasm-test/static/js/787.bf041ad7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.5a7e7a91.js"
+    "static/js/main.81f1cf49.js"
   ]
 }
