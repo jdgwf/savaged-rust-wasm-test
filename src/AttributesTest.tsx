@@ -1,5 +1,5 @@
 import * as React from 'react';
-import init, { get_dice_value, PlayerCharacter } from 'savagedlib';
+import init, { get_dice_value, PlayerCharacter } from 'savaged_libs';
 
 import { makeRange } from './utils/makeRange';
 
@@ -29,7 +29,7 @@ export default class Moo extends React.Component<IMooProps, IMooState> {
                 this.pc.set_attribute_selected_strength(2);
                 this.pc.set_attribute_selected_vigor(3);
 
-                this.pc.set_attribute_boosted_vigor(1);
+                // this.pc.set_attribute_boosted_vigor(1);
                 this.setState({
                     updated: true,
                 })
@@ -46,7 +46,7 @@ export default class Moo extends React.Component<IMooProps, IMooState> {
                   pc.set_attribute_selected_strength(2);
                   pc.set_attribute_selected_vigor(3);
 
-                  pc.set_attribute_boosted_vigor(1);
+                  // pc.set_attribute_boosted_vigor(1);
 
                   pc.calc();
 

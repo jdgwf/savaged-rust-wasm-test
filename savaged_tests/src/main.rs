@@ -1,9 +1,9 @@
-use savagedlib;
+use savaged_libs;
 
 fn main() {
 
     for count in  0..100000 {
-        let mut pc = savagedlib::player_character::PlayerCharacter::new();
+        let mut pc = savaged_libs::player_character::PlayerCharacter::new();
 
         let new_name = "New PC!".to_string() + &" #".to_string() + &count.to_string();
         pc.set_name( new_name  );
