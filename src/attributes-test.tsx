@@ -2,7 +2,7 @@ import * as React from 'react';
 import init, { get_dice_value, PlayerCharacter } from 'savaged_libs';
 
 import { makeRange } from './utils/makeRange';
-
+import "./scss/attributes-test.scss"
 export default class Moo extends React.Component<IMooProps, IMooState> {
 
     pc: PlayerCharacter | null = null;
@@ -140,7 +140,7 @@ updateSpirit = (
 
         {this.pc && this.pc.attributes ? (
           <>
-          <h2>Presto-Chango Controls</h2>
+          <h2 className="presto-chango">Presto-Chango Controls</h2>
           <label>
             Set Name:<br />
             <input
@@ -149,8 +149,8 @@ updateSpirit = (
               //@ts-ignore
               onChange={(e) => this.setName(e, this.pc)}
             />
-          </label>
-          <ul>
+          </label><br />
+          <ul className="attribute-select">
             <li>
                 <label>Agility:&nbsp;
                 <select
