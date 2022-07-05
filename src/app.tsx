@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './scss/app.scss';
-import AttributesTest from './attributes-test';
+import AttributesTest from './components/attributes-test';
 
 function App() {
 

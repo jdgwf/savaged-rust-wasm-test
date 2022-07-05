@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 pub mod attributes;
 pub mod edge;
 pub mod hindrance;
+pub mod exports;
 
 use uuid::{Uuid};
 use attributes::Attributes;
