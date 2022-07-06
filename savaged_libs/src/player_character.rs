@@ -9,6 +9,7 @@ use attributes::Attributes;
 use edge::Edge;
 use hindrance::Hindrance;
 use chrono::prelude::*;
+use serde::{Serialize, Deserialize};
 
 #[wasm_bindgen]
 pub struct PlayerCharacter {
@@ -32,10 +33,12 @@ pub struct PlayerCharacter {
 
     #[wasm_bindgen(skip)]
     pub added_hindrances: Vec< Hindrance >,
-    // date_created:  DateTime<Utc>,
-    // date_modified:  DateTime<Utc>,
-    // date_deleted:  DateTime<Utc>,
+    date_created:  DateTime<Utc>,
+    date_modified:  DateTime<Utc>,
+    date_deleted:  DateTime<Utc>,
     pub deleted: bool,
+
+    available_data: serde_json::Value,
 }
 
 #[wasm_bindgen]
@@ -73,7 +76,9 @@ impl PlayerCharacter {
 #[wasm_bindgen]
 impl PlayerCharacter {
     #[wasm_bindgen(constructor)]
-    pub fn new() -> PlayerCharacter {
+    pub fn new(
+        available_data: String,
+    ) -> PlayerCharacter {
         //use the . operator to fetch the value of a field via the self keyword
         let mut pc = PlayerCharacter{
             name: "".to_string(),
@@ -83,10 +88,11 @@ impl PlayerCharacter {
             selected_hindrances: Vec::new(),
             added_edges: Vec::new(),
             added_hindrances: Vec::new(),
-            // date_created: Utc::now(),
-            // date_modified: Utc::now(),
-            // date_deleted: Utc::now(),
+            date_created: Utc::now(),
+            date_modified: Utc::now(),
+            date_deleted: Utc::now(),
             deleted: false,
+            available_data: serde_json::from_str(&available_data).unwrap(),
         };
 
         pc.calc();
@@ -134,11 +140,21 @@ impl PlayerCharacter {
     pub fn attributes( &self ) -> Attributes {
         self.attributes.clone()
     }
+
     #[wasm_bindgen(setter)]
     pub fn set_attributes( &mut self, new_value: Attributes) {
         // self.uuid = uuid!( new_value[..] );
         self.attributes = new_value.clone();
     }
 
+    pub fn reset( &mut self ) {
+        self.name = "".to_string();
+        self.uuid = Uuid::new_v4();
+        self.attributes = Attributes::new();
+        self.selected_edges = Vec::new();
+        self.selected_hindrances = Vec::new();
+        self.added_edges = Vec::new();
+        self.added_hindrances = Vec::new();
+    }
 
 }

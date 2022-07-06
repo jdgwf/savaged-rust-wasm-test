@@ -1,11 +1,10 @@
 import * as React from 'react';
-import init, { get_dice_value, PlayerCharacter } from 'savaged_libs';
-import { makeRange } from '../../utils/makeRange';
+import { PlayerCharacter } from 'savaged_libs';
 import SanitizedHTML from '../sanitized_html';
 import CharacterGeneratorConcept from './pages/concept';
 import CharacterGeneratorTraits from './pages/traits';
 
-import "./scss/character-generator.scss"
+import "./scss/character-generator.scss";
 export default class CharacterGeneratorBase extends React.Component<ICharacterGeneratorBaseProps, ICharacterGeneratorBaseState> {
 
     constructor(props: ICharacterGeneratorBaseProps) {
@@ -19,6 +18,9 @@ export default class CharacterGeneratorBase extends React.Component<ICharacterGe
 
     render = (): React.ReactNode =>  {
 
+        if(!this.props.pc) {
+            return <>Loading...</>
+        }
         return (
             <>
 
@@ -35,7 +37,7 @@ export default class CharacterGeneratorBase extends React.Component<ICharacterGe
 />
 </div>
 <div style={{width: "50%"}}>
-<h2>export_html()</h2>
+<h2>export_html() (from rust wasm struct)</h2>
 <SanitizedHTML
     html={this.props.pc.export_html()}
     raw={true}
@@ -48,7 +50,7 @@ export default class CharacterGeneratorBase extends React.Component<ICharacterGe
 }
 
 interface ICharacterGeneratorBaseProps {
-    pc: PlayerCharacter;
+    pc: PlayerCharacter | null;
     onChange(pc: PlayerCharacter): void;
 }
 
