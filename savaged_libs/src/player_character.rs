@@ -3,13 +3,19 @@ pub mod attributes;
 pub mod edge;
 pub mod hindrance;
 pub mod exports;
+pub mod imports;
+
+use crate::json_data;
 
 use uuid::{Uuid};
 use attributes::Attributes;
 use edge::Edge;
 use hindrance::Hindrance;
 use chrono::prelude::*;
+use json_data::json_chargen_data::JSONChargenData;
 use serde::{Serialize, Deserialize};
+
+use std::collections::HashMap;
 
 #[wasm_bindgen]
 pub struct PlayerCharacter {
@@ -38,7 +44,7 @@ pub struct PlayerCharacter {
     date_deleted:  DateTime<Utc>,
     pub deleted: bool,
 
-    available_data: serde_json::Value,
+    available_data: JSONChargenData,
 }
 
 #[wasm_bindgen]

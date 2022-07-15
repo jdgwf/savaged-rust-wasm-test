@@ -2,6 +2,7 @@
 
 pub mod player_character;
 pub mod utils;
+pub mod json_data;
 // pub mod edge;
 // pub mod hindrance;
 
