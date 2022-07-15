@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/savaged-rust-wasm-test/static/css/main.b76018a2.css",
-    "main.js": "/savaged-rust-wasm-test/static/js/main.5b309fc3.js",
+    "main.js": "/savaged-rust-wasm-test/static/js/main.e8142604.js",
     "static/js/787.bf041ad7.chunk.js": "/savaged-rust-wasm-test/static/js/787.bf041ad7.chunk.js",
-    "static/media/savaged_libs_bg.wasm": "/savaged-rust-wasm-test/static/media/savaged_libs_bg.d5a218afd3e630aad152.wasm",
+    "static/media/savaged_libs_bg.wasm": "/savaged-rust-wasm-test/static/media/savaged_libs_bg.28fedf701700708adf0f.wasm",
     "index.html": "/savaged-rust-wasm-test/index.html",
     "static/media/index.cjs": "/savaged-rust-wasm-test/static/media/index.cd351d7c31d0d3fccf96.cjs",
     "main.b76018a2.css.map": "/savaged-rust-wasm-test/static/css/main.b76018a2.css.map",
-    "main.5b309fc3.js.map": "/savaged-rust-wasm-test/static/js/main.5b309fc3.js.map",
+    "main.e8142604.js.map": "/savaged-rust-wasm-test/static/js/main.e8142604.js.map",
     "787.bf041ad7.chunk.js.map": "/savaged-rust-wasm-test/static/js/787.bf041ad7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b76018a2.css",
-    "static/js/main.5b309fc3.js"
+    "static/js/main.e8142604.js"
   ]
 }
