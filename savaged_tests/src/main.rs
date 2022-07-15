@@ -1,9 +1,31 @@
 use savaged_libs;
+// use futures::executor::block_on;
+
+fn get_savaged_data( api_key: String ) -> String {
+
+    println!("Getting chargen data from savaged.us");
+    let params = [("api_key", &api_key ) ];
+    let client = reqwest::blocking::Client::new();
+    let chargen_data = client.post("https://savaged.us/_api/chargen-data")
+    .form(&params)
+    .send()
+    .unwrap()
+    .text()
+    .unwrap();
+
+    // block_on(chargen_data);
+    println!("Completed chargen data from savaged.us");
+
+    chargen_data
+}
 
 fn main() {
+    let mut available_data = get_savaged_data( "".to_string() );
 
+    let mut pc = savaged_libs::player_character::PlayerCharacter::new( available_data.clone() );
     for count in  0..100000 {
-        let mut pc = savaged_libs::player_character::PlayerCharacter::new();
+
+        pc.reset();
 
         let new_name = "New PC!".to_string() + &" #".to_string() + &count.to_string();
         pc.set_name( new_name  );
