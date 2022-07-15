@@ -46,17 +46,38 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
               this.pc.set_attribute_selected_strength(2);
               this.pc.set_attribute_selected_vigor(3);
 
+              console.log("# Available Books", this.pc.get_available_books_count() );
+              console.log("get_available_books", JSON.parse( this.pc.get_available_books() ) );
+
+              console.log("# Available Edges", this.pc.get_available_edges_count() );
+              console.log("get_available_edges", JSON.parse( this.pc.get_available_edges() ) );
+
+              console.log("# Available Hindrances", this.pc.get_available_hindrances_count() )
+              console.log("get_available_hindrances", JSON.parse( this.pc.get_available_hindrances() ) );
+
+              console.log("# Available Gear", this.pc.get_available_gear_count() );
+              console.log("get_available_gear", JSON.parse( this.pc.get_available_gear() ) );
+
+              console.log("# Available Weapons", this.pc.get_available_weapon_count() );
+              console.log("get_available_weapons", JSON.parse( this.pc.get_available_weapons() ) );
+
+              console.log("# Available Armor", this.pc.get_available_armor_count() );
+              console.log("get_available_armor", JSON.parse( this.pc.get_available_armor() ) );
+
               this.setState({
                   updated: true,
               })
 
               console.log("Creating work character complete", new Date() );
 
-              console.log("Starting creation of 100,000 PCs", new Date());
+              let num_test_pcs = 100000;
+              console.log("Starting creation of " + num_test_pcs + " PCs", new Date());
               console.log("chargenDataString.length", chargenDataString.length);
-              let pc = new PlayerCharacter( chargenDataString );
-              for( let x = 1; x < 100001; x++ ) {
 
+              let pc = new PlayerCharacter( chargenDataString );
+              for( let x = 1; x < num_test_pcs + 1; x++ ) {
+                // this is an EXPENSIVE operation... it's easier to reuse a created object and reimport if possible. (as above - it's - at least - 1000x faster)
+                // let pc = new PlayerCharacter( chargenDataString );
                 pc.reset();
 
                 pc.name = "Testing #"  + x.toString();
@@ -70,10 +91,10 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
 
                 pc.calc();
 
-                if( x % 10000 === 0)
+                if( x % (num_test_pcs / 10) === 0)
                   console.log("PC", pc.name );
               }
-              console.log("End 100,000 PCs", new Date());
+              console.log("End " + num_test_pcs + " PCs", new Date());
             })
 
         }

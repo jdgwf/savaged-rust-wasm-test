@@ -13,6 +13,7 @@ use edge::Edge;
 use hindrance::Hindrance;
 use chrono::prelude::*;
 use json_data::json_chargen_data::JSONChargenData;
+use json_data::json_chargen_book::JSONBookDefinition;
 use serde::{Serialize, Deserialize};
 
 use std::collections::HashMap;
@@ -115,7 +116,52 @@ impl PlayerCharacter {
         self.name.clone()
     }
 
+    pub fn get_available_edges_count( &self ) -> usize {
+        self.available_data.edges.len()
+    }
 
+    pub fn get_available_books_count( &self ) -> usize {
+        self.available_data.books.len()
+    }
+
+    pub fn get_available_books( &self ) -> String {
+        serde_json::to_string( &self.available_data.books ).unwrap()
+    }
+
+    pub fn get_available_hindrances( &self ) -> String {
+        serde_json::to_string( &self.available_data.hindrances ).unwrap()
+    }
+    pub fn get_available_edges( &self ) -> String {
+        serde_json::to_string( &self.available_data.edges ).unwrap()
+    }
+
+    pub fn get_available_weapons( &self ) -> String {
+        serde_json::to_string( &self.available_data.weapons ).unwrap()
+    }
+    pub fn get_available_armor( &self ) -> String {
+        serde_json::to_string( &self.available_data.armor ).unwrap()
+    }
+    pub fn get_available_gear( &self ) -> String {
+        serde_json::to_string( &self.available_data.gear ).unwrap()
+    }
+
+
+    pub fn get_available_hindrances_count( &self ) -> usize {
+        self.available_data.hindrances.len()
+    }
+
+
+    pub fn get_available_weapon_count( &self ) -> usize {
+        self.available_data.weapons.len()
+    }
+
+    pub fn get_available_armor_count( &self ) -> usize {
+        self.available_data.armor.len()
+    }
+
+    pub fn get_available_gear_count( &self ) -> usize {
+        self.available_data.gear.len()
+    }
     // #[wasm_bindgen(getter)]
     // pub fn date_created( &self ) -> DateTime<Utc> {
     //     self.date_created.clone()

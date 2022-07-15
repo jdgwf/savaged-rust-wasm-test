@@ -4,4 +4,5 @@ use serde::{Serialize, Deserialize};
 pub struct JSONHindranceDefinition {
     pub id: u64,
     pub name: String,
+    pub summary: String,
 }
