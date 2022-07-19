@@ -45,9 +45,9 @@ pub struct PlayerCharacter {
 
     #[wasm_bindgen(skip)]
     pub added_hindrances: Vec< Hindrance >,
-    date_created:  DateTime<Utc>,
-    date_modified:  DateTime<Utc>,
-    date_deleted:  DateTime<Utc>,
+    created_on:  DateTime<Utc>,
+    updated_on:  DateTime<Utc>,
+    deleted_on:  DateTime<Utc>,
     pub deleted: bool,
 
     available_data: JSONChargenData,
@@ -100,9 +100,9 @@ impl PlayerCharacter {
             selected_hindrances: Vec::new(),
             added_edges: Vec::new(),
             added_hindrances: Vec::new(),
-            date_created: Utc::now(),
-            date_modified: Utc::now(),
-            date_deleted: Utc::now(),
+            created_on: Utc::now(),
+            updated_on: Utc::now(),
+            deleted_on: Utc::now(),
             deleted: false,
             available_data: serde_json::from_str(&available_data).unwrap(),
         };
@@ -168,18 +168,18 @@ impl PlayerCharacter {
         self.available_data.gear.len()
     }
     // #[wasm_bindgen(getter)]
-    // pub fn date_created( &self ) -> DateTime<Utc> {
-    //     self.date_created.clone()
+    // pub fn created_on( &self ) -> DateTime<Utc> {
+    //     self.created_on.clone()
     // }
 
     // #[wasm_bindgen(getter)]
-    // pub fn date_modified( &self ) -> DateTime<Utc> {
-    //     self.date_modified.clone()
+    // pub fn updated_on( &self ) -> DateTime<Utc> {
+    //     self.updated_on.clone()
     // }
 
     // #[wasm_bindgen(getter)]
-    // pub fn date_deleted( &self ) -> DateTime<Utc> {
-    //     self.date_deleted.clone()
+    // pub fn deleted_on( &self ) -> DateTime<Utc> {
+    //     self.deleted_on.clone()
     // }
 
     #[wasm_bindgen(setter)]

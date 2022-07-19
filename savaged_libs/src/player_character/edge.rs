@@ -5,7 +5,7 @@ use std::collections::HashMap;
 use crate::json_data::json_chargen_data::JSONChargenData;
 use crate::json_data::json_chargen_edge::JSONEdgeDefinition;
 use crate::json_data::json_chargen_edge::JSONEdgeVars;
-
+use chrono::prelude::*;
 
 
 #[wasm_bindgen]
@@ -18,6 +18,11 @@ pub struct Edge {
     pub custom_name: String,
     #[wasm_bindgen(skip)]
     pub uuid: Uuid,
+
+    created_on:  DateTime<Utc>,
+    updated_on:  DateTime<Utc>,
+    deleted_on:  DateTime<Utc>,
+    pub deleted: bool,
 
 }
 
@@ -32,6 +37,10 @@ impl Edge {
             name: "".to_string(),
             custom_name: "".to_string(),
             uuid: Uuid::new_v4(),
+            created_on: Utc::now(),
+            updated_on: Utc::now(),
+            deleted_on: Utc::now(),
+            deleted: false,
         }
     }
 
@@ -107,6 +116,11 @@ impl Edge {
             self.is_custom = false;
         }
         self.id = id;
+
+        self.created_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &def.created_on ).unwrap().naive_utc(), Utc);
+        self.updated_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &def.updated_on ).unwrap().naive_utc(), Utc);
+        self.deleted_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &def.deleted_on ).unwrap().naive_utc(), Utc);
+
     }
 
     pub fn import_vars(

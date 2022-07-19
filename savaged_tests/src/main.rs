@@ -24,7 +24,7 @@ fn main() {
     let available_data = get_savaged_data( "".to_string() );
 
     // println!("available_data {}", available_data );
-    println!("available_data.len() {}", available_data.len() );
+    println!("available_data.len() {:#?}", available_data.len() );
 
     let mut pc = savaged_libs::player_character::PlayerCharacter::new( available_data.clone() );
     for count in  0..100000 {
@@ -42,25 +42,25 @@ fn main() {
 
         // pc.set_uuid("67e55044-10b1-426f-9247-bb680e5fe0c8".to_string());
 
-        println!("Count # {}", count + 1);
-        println!("PC Name: {}", pc.name );
-        println!("UUID: {}", pc.uuid );
-        println!("* Agility {}", pc.attributes().agility_hr() );
-        println!("* Smarts {}", pc.attributes().smarts_hr() );
-        println!("* Spirit {}", pc.attributes().spirit_hr() );
-        println!("* Strength {}", pc.attributes().strength_hr() );
-        println!("* Vigor {}", pc.attributes().vigor_hr() );
+        // println!("Count # {}", count + 1);
+        // println!("PC Name: {}", pc.name );
+        // println!("UUID: {}", pc.uuid );
+        // println!("* Agility {}", pc.attributes().agility_hr() );
+        // println!("* Smarts {}", pc.attributes().smarts_hr() );
+        // println!("* Spirit {}", pc.attributes().spirit_hr() );
+        // println!("* Strength {}", pc.attributes().strength_hr() );
+        // println!("* Vigor {}", pc.attributes().vigor_hr() );
 
-        println!("-----------------------------");
+        // println!("-----------------------------");
 
 
     }
-    println!("# books len: {}", pc.get_available_books().len() );
-    println!("# edges len: {}", pc.get_available_hindrances().len() );
-    println!("# hindrances len: {}", pc.get_available_hindrances().len() );
+    println!("# books len: {:#?}", pc.get_available_books().len() );
+    println!("# edges len: {:#?}", pc.get_available_hindrances().len() );
+    println!("# hindrances len: {:#?}", pc.get_available_hindrances().len() );
 
-    println!("# armor len: {}", pc.get_available_armor().len() );
-    println!("# weapons len: {}", pc.get_available_weapons().len() );
-    println!("# gear len: {}", pc.get_available_gear().len() );
+    println!("# armor len: {:#?}", pc.get_available_armor().len() );
+    println!("# weapons len: {:#?}", pc.get_available_weapons().len() );
+    println!("# gear len: {:#?}", pc.get_available_gear().len() );
 
 }
