@@ -28,7 +28,6 @@ fn main() {
 
     let mut pc = savaged_libs::player_character::PlayerCharacter::new( available_data.clone() );
     for count in  0..100000 {
-        break;
         pc.reset();
 
         let new_name = "New PC!".to_string() + &" #".to_string() + &count.to_string();
