@@ -47,22 +47,22 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
               this.pc.set_attribute_selected_vigor(3);
 
               console.log("# Available Books", this.pc.get_available_books_count() );
-              console.log("get_available_books", JSON.parse( this.pc.get_available_books() ) );
+              console.log("get_available_books", JSON.parse( this.pc.get_available_books_json() ) );
 
               console.log("# Available Edges", this.pc.get_available_edges_count() );
-              console.log("get_available_edges", JSON.parse( this.pc.get_available_edges() ) );
+              console.log("get_available_edges", JSON.parse( this.pc.get_available_edges_json() ) );
 
               console.log("# Available Hindrances", this.pc.get_available_hindrances_count() )
-              console.log("get_available_hindrances", JSON.parse( this.pc.get_available_hindrances() ) );
+              console.log("get_available_hindrances", JSON.parse( this.pc.get_available_hindrances_json() ) );
 
               console.log("# Available Gear", this.pc.get_available_gear_count() );
-              console.log("get_available_gear", JSON.parse( this.pc.get_available_gear() ) );
+              console.log("get_available_gear", JSON.parse( this.pc.get_available_gear_json() ) );
 
               console.log("# Available Weapons", this.pc.get_available_weapon_count() );
-              console.log("get_available_weapons", JSON.parse( this.pc.get_available_weapons() ) );
+              console.log("get_available_weapons", JSON.parse( this.pc.get_available_weapons_json() ) );
 
               console.log("# Available Armor", this.pc.get_available_armor_count() );
-              console.log("get_available_armor", JSON.parse( this.pc.get_available_armor() ) );
+              console.log("get_available_armor", JSON.parse( this.pc.get_available_armor_json() ) );
 
               this.setState({
                   updated: true,
