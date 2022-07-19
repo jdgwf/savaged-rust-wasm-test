@@ -2,7 +2,7 @@ use wasm_bindgen::prelude::*;
 use crate::player_character::PlayerCharacter;
 use crate::json_data::json_character_export::JSONCharacterExport;
 use chrono::prelude::*;
-use serde::{Serialize, Deserialize};
+// use serde::{Serialize, Deserialize};
 
 #[wasm_bindgen]
 impl PlayerCharacter {

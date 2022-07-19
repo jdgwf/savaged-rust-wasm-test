@@ -19,9 +19,9 @@ use json_data::json_chargen_hindrance::JSONHindranceDefinition;
 use json_data::json_chargen_weapon::JSONWeaponDefinition;
 use json_data::json_chargen_armor::JSONArmorDefinition;
 use json_data::json_chargen_gear::JSONGearDefinition;
-use serde::{Serialize, Deserialize};
+// use serde::{Serialize, Deserialize};
 
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 #[wasm_bindgen]
 pub struct PlayerCharacter {

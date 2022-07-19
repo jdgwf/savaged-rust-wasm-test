@@ -1,30 +1,26 @@
+extern crate dotenv;
+
+use dotenv::dotenv;
+use std::env;
+
 use savaged_libs;
-// use futures::executor::block_on;
 
-fn get_savaged_data( api_key: String ) -> String {
-
-    println!("Getting chargen data from savaged.us");
-    let params = [("apikey", &api_key ) ];
-    let client = reqwest::blocking::Client::new();
-    let chargen_data = client.post("https://savaged.us/_api/chargen-data")
-    // let chargen_data = client.post("http://localhost:5001/_api/chargen-data")
-    .form(&params)
-    .send()
-    .unwrap()
-    .text()
-    .unwrap();
-
-    // block_on(chargen_data);
-    println!("Completed downloading chargen data from savaged.us");
-
-    chargen_data
-}
 
 fn main() {
-    let available_data = get_savaged_data( "".to_string() );
+    dotenv().ok();
+    let mut api_key: String = "".to_string();
+    for (key, value) in env::vars() {
+        if key == "APIKEY" {
+            api_key = value.to_string();
+        }
+    }
+    println!("apikey: {}", api_key);
+    let available_data = savaged_libs::utils::get_chargen_data::get_chargen_data( api_key.to_string() );
+    let user_saves = savaged_libs::utils::get_user_saves::get_user_saves( api_key.to_string() );
 
     // println!("available_data {}", available_data );
     println!("available_data.len() {:#?}", available_data.len() );
+    println!("user_saves.len() {:#?}", user_saves.len() );
 
     let mut pc = savaged_libs::player_character::PlayerCharacter::new( available_data.clone() );
     for count in  0..100000 {

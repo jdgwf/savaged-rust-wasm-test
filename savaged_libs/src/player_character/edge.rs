@@ -1,7 +1,7 @@
 use wasm_bindgen::prelude::*;
 use uuid::{Uuid};
 use crate::player_character::PlayerCharacter;
-use std::collections::HashMap;
+// use std::collections::HashMap;
 use crate::json_data::json_chargen_data::JSONChargenData;
 use crate::json_data::json_chargen_edge::JSONEdgeDefinition;
 use crate::json_data::json_chargen_edge::JSONEdgeVars;
