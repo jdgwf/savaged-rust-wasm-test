@@ -14,6 +14,11 @@ use hindrance::Hindrance;
 use chrono::prelude::*;
 use json_data::json_chargen_data::JSONChargenData;
 use json_data::json_chargen_book::JSONBookDefinition;
+use json_data::json_chargen_edge::JSONEdgeDefinition;
+use json_data::json_chargen_hindrance::JSONHindranceDefinition;
+use json_data::json_chargen_weapon::JSONWeaponDefinition;
+use json_data::json_chargen_armor::JSONArmorDefinition;
+use json_data::json_chargen_gear::JSONGearDefinition;
 use serde::{Serialize, Deserialize};
 
 use std::collections::HashMap;
@@ -124,24 +129,24 @@ impl PlayerCharacter {
         self.available_data.books.len()
     }
 
-    pub fn get_available_books( &self ) -> String {
+    pub fn get_available_books_json( &self ) -> String {
         serde_json::to_string( &self.available_data.books ).unwrap()
     }
 
-    pub fn get_available_hindrances( &self ) -> String {
+    pub fn get_available_hindrances_json( &self ) -> String {
         serde_json::to_string( &self.available_data.hindrances ).unwrap()
     }
-    pub fn get_available_edges( &self ) -> String {
+    pub fn get_available_edges_json( &self ) -> String {
         serde_json::to_string( &self.available_data.edges ).unwrap()
     }
 
-    pub fn get_available_weapons( &self ) -> String {
+    pub fn get_available_weapons_json( &self ) -> String {
         serde_json::to_string( &self.available_data.weapons ).unwrap()
     }
-    pub fn get_available_armor( &self ) -> String {
+    pub fn get_available_armor_json( &self ) -> String {
         serde_json::to_string( &self.available_data.armor ).unwrap()
     }
-    pub fn get_available_gear( &self ) -> String {
+    pub fn get_available_gear_json( &self ) -> String {
         serde_json::to_string( &self.available_data.gear ).unwrap()
     }
 
@@ -209,4 +214,29 @@ impl PlayerCharacter {
         self.added_hindrances = Vec::new();
     }
 
+}
+
+// non WASM functions
+impl PlayerCharacter {
+
+    pub fn get_available_books( &self ) -> &Vec< JSONBookDefinition > {
+        &self.available_data.books
+    }
+
+    pub fn get_available_hindrances( &self ) -> &Vec< JSONHindranceDefinition > {
+        &self.available_data.hindrances
+    }
+    pub fn get_available_edges( &self ) -> &Vec< JSONEdgeDefinition > {
+        &self.available_data.edges
+    }
+
+    pub fn get_available_weapons( &self ) -> &Vec< JSONWeaponDefinition > {
+        &self.available_data.weapons
+    }
+    pub fn get_available_armor( &self ) -> &Vec< JSONArmorDefinition > {
+        &self.available_data.armor
+    }
+    pub fn get_available_gear( &self ) -> &Vec< JSONGearDefinition > {
+        &self.available_data.gear
+    }
 }

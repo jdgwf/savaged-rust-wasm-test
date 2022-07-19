@@ -4,5 +4,10 @@ use serde::{Serialize, Deserialize};
 pub struct JSONArmorDefinition {
     pub id: u64,
     pub name: String,
+    #[serde(default)]
     pub summary: String,
+
+    pub book_id: u64,
+    #[serde(default)]
+    pub page: String,
 }

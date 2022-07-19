@@ -4,5 +4,6 @@ use serde::{Serialize, Deserialize};
 pub struct JSONBookDefinition {
     pub id: u64,
     pub name: String,
+    #[serde(default)]
     pub summary: String,
 }

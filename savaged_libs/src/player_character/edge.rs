@@ -3,17 +3,10 @@ use uuid::{Uuid};
 use crate::player_character::PlayerCharacter;
 use std::collections::HashMap;
 use crate::json_data::json_chargen_data::JSONChargenData;
+use crate::json_data::json_chargen_edge::JSONEdgeDefinition;
+use crate::json_data::json_chargen_edge::JSONEdgeVars;
 
-pub struct EdgeVars {
 
-}
-
-pub struct EdgeDef {
-    pub id: u64,
-    pub is_custom: bool,
-    name: String,
-    uuid: String,
-}
 
 #[wasm_bindgen]
 pub struct Edge {
@@ -21,6 +14,8 @@ pub struct Edge {
     pub is_custom: bool,
     #[wasm_bindgen(skip)]
     pub name: String,
+    #[wasm_bindgen(skip)]
+    pub custom_name: String,
     #[wasm_bindgen(skip)]
     pub uuid: Uuid,
 
@@ -35,6 +30,7 @@ impl Edge {
             id: 0,
             is_custom: false,
             name: "".to_string(),
+            custom_name: "".to_string(),
             uuid: Uuid::new_v4(),
         }
     }
@@ -48,15 +44,24 @@ impl Edge {
 #[wasm_bindgen]
 impl Edge {
 
-
     #[wasm_bindgen(setter)]
     pub fn set_name( &mut self, new_name: String) {
-         self.name = new_name;
+         self.name = new_name.clone();
     }
 
     #[wasm_bindgen(getter)]
     pub fn name( &self ) -> String {
         self.name.clone()
+    }
+
+    #[wasm_bindgen(getter)]
+    pub fn custom_name( &self ) -> String {
+        self.custom_name.clone()
+    }
+
+    #[wasm_bindgen(setter)]
+    pub fn set_custom_name( &mut self, new_name: String) {
+         self.custom_name = new_name.clone();
     }
 
 
@@ -71,36 +76,45 @@ impl Edge {
         self.uuid.to_string()
     }
 
-
-
 }
 
 impl Edge {
-    pub fn import_def(
+    pub fn import(
         &mut self,
-        id: i32,
-        def: EdgeDef,
+        id: u64,
+        def: JSONEdgeDefinition,
         available_data: JSONChargenData,
     ) {
         if id == 0 {
-            self.set_name( def.name );
-            self.is_custom = def.is_custom;
-            self.uuid = Uuid::parse_str( &def.uuid ).unwrap();
-            self.id = 0
+            self._import_definition( id, &def );
         } else {
             for edge in available_data.edges.iter() {
-                self.name = edge.name.clone();
-                self.id = edge.id;
+                self._import_definition( edge.id, &edge );
             }
 
         }
+    }
 
-
+    fn _import_definition(
+        &mut self,
+        id: u64,
+        def: &JSONEdgeDefinition,
+    ) {
+        self.set_name( def.name.clone() );
+        if id == 0 {
+            self.is_custom = true;
+        } else {
+            self.is_custom = false;
+        }
+        self.id = id;
     }
 
     pub fn import_vars(
-        &mut self
+        &mut self,
+        vars: &JSONEdgeVars,
     ) {
-
+        self.uuid = Uuid::parse_str( &vars.uuid ).unwrap();
+        self.set_custom_name( vars.custom_name.clone() );
     }
+
 }
