@@ -6,7 +6,8 @@ use std::env;
 use savaged_libs;
 
 
-fn main() {
+#[tokio::main]
+async fn main() {
     dotenv().ok();
     let mut api_key: String = "".to_string();
     for (key, value) in env::vars() {
@@ -15,8 +16,8 @@ fn main() {
         }
     }
     println!("apikey: {}", api_key);
-    let available_data = savaged_libs::utils::get_chargen_data::get_chargen_data( api_key.to_string() );
-    let user_saves = savaged_libs::utils::get_user_saves::get_user_saves( api_key.to_string() );
+    let available_data = savaged_libs::utils::get_chargen_data::get_chargen_data( api_key.to_string() ).await;
+    let user_saves = savaged_libs::utils::get_user_saves::get_user_saves( api_key.to_string() ).await;
 
     // println!("available_data {}", available_data );
     println!("available_data.len() {:#?}", available_data.len() );

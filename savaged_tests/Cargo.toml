@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 savaged_libs = { path =  "../savaged_libs", crate-type = "rlib" }
 dotenv = "0.15.0"
+tokio = { version = "1", features = ["full"] }
