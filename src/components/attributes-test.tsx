@@ -7,6 +7,8 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
 
     pc: PlayerCharacter | null = null;
     chargenData: any | null = null;
+    userSaves: any | null = null;
+    apiKey: string = "";
     constructor(props: IAttributesTestProps) {
         super(props);
 
@@ -14,24 +16,61 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
             updated: false,
         }
 
+        let lsAPIKey = localStorage.getItem("api_key");
+        if( lsAPIKey ) {
+            this.apiKey = lsAPIKey;
+        }
+
+    }
+
+    setAPIKey = (
+        e: React.FormEvent<HTMLInputElement>
+    ) => {
+        localStorage.setItem("api_key", e.currentTarget.value );
+        this.setState({
+            updated: true,
+        });
     }
 
     async componentDidMount() {
 
       if(!this.chargenData) {
       console.log("Fetching chargen data from savaged.us", new Date())
-      let req = await fetch(
+      let urlencoded = new URLSearchParams({
+        "apikey": this.apiKey,
+
+      });
+      let chargenReq = await fetch(
           "https://savaged.us/_api/chargen-data",
           {
             method: "post",
+            body: urlencoded,
           }
         );
 
-        this.chargenData = await req.json();
+        this.chargenData = await chargenReq.json();
 
         console.log("Fetching chargen data complete from savaged.us", new Date())
       }
 
+      if(!this.userSaves && this.apiKey ) {
+        console.log("Fetching user saves from savaged.us", new Date())
+        let urlencoded = new URLSearchParams({
+          "apikey": this.apiKey,
+
+        });
+        let chargenReq = await fetch(
+            "https://savaged.us/_api/auth/get-saves",
+            {
+              method: "post",
+              body: urlencoded,
+            }
+          );
+
+          this.userSaves = await chargenReq.json();
+
+          console.log("Fetching user saves complete from savaged.us", new Date(), this.userSaves.length)
+        }
         if(!this.pc && this.chargenData) {
             init().then(() => {
               let chargenDataString = JSON.stringify(this.chargenData);
@@ -120,6 +159,15 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
   />
 
 
+<hr />
+<label>
+    API Key:
+    <input
+        type="password"
+        value={this.apiKey}
+        onChange={this.setAPIKey}
+    />
+</label>
             </>
         )
     }
