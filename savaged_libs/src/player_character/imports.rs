@@ -14,8 +14,8 @@ impl PlayerCharacter {
         let import_data: JSONCharacterExport = serde_json::from_str(&import_json_string).unwrap();
 
 
-        self.created_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.created_on ).unwrap().naive_utc(), Utc);
-        self.updated_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.updated_on ).unwrap().naive_utc(), Utc);
-        self.deleted_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.deleted_on ).unwrap().naive_utc(), Utc);
+        // self.created_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.created_on ).unwrap().naive_utc(), Utc);
+        // self.updated_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.updated_on ).unwrap().naive_utc(), Utc);
+        // self.deleted_on = DateTime::from_utc(DateTime::parse_from_rfc3339( &import_data.deleted_on ).unwrap().naive_utc(), Utc);
     }
 }

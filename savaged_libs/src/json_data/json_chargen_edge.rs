@@ -12,9 +12,7 @@ pub struct JSONEdgeDefinition {
     #[serde(default)]
     pub page: String,
 
-    pub created_on: String,
-    pub updated_on: String,
-    pub deleted_on: String,
+
     pub deleted: bool,
 }
 
