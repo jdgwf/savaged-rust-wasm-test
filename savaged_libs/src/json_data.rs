@@ -10,3 +10,5 @@ pub mod json_chargen_gear;
 pub mod json_chargen_weapon;
 
 pub mod json_character_export;
+
+pub mod json_save_db_row;

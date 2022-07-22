@@ -1,6 +1,7 @@
 use wasm_bindgen::prelude::*;
 use uuid::{Uuid};
 use crate::player_character::PlayerCharacter;
+use chrono::prelude::*;
 
 #[wasm_bindgen]
 pub struct Hindrance {
@@ -8,6 +9,11 @@ pub struct Hindrance {
     pub name: String,
     #[wasm_bindgen(skip)]
     pub uuid: Uuid,
+
+    created_on:  DateTime<Utc>,
+    updated_on:  DateTime<Utc>,
+    deleted_on:  DateTime<Utc>,
+    pub deleted: bool,
 }
 
 
@@ -19,6 +25,10 @@ impl Hindrance {
         Hindrance{
             name: "".to_string(),
             uuid: Uuid::new_v4(),
+            created_on: Utc::now(),
+            updated_on: Utc::now(),
+            deleted_on: Utc::now(),
+            deleted: false,
         }
     }
     pub fn apply( mut char_obj: &PlayerCharacter ) {

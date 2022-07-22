@@ -11,55 +11,55 @@ pub fn get_dice_value (
    } else if bonus < 0 {
       bonus_string = bonus.to_string();
    }
-   if val == 1 {
+   if val == 0 {
       return "d4".to_string() + &bonus_string;
    }
-   if val == 2 {
+   if val == 1 {
       return "d6".to_string() + &bonus_string;
    }
-   if val == 3 {
+   if val == 2 {
       return "d8".to_string() + &bonus_string;
    }
-   if val == 4 {
+   if val == 3 {
       return "d10".to_string() + &bonus_string;
    }
-   if val == 5 {
+   if val == 4 {
       return "d12".to_string() + &bonus_string;
    }
-   if val == 6 {
+   if val == 5 {
       return "d12+1".to_string() + &bonus_string;
    }
-   if val == 7 {
+   if val == 6 {
       return "d12+2".to_string() + &bonus_string;
    }
-   if val == 8 {
+   if val == 7 {
       return "d12+3".to_string() + &bonus_string;
    }
-   if val == 9 {
+   if val == 8 {
       return "d12+4".to_string() + &bonus_string;
    }
-   if val == 10 {
+   if val == 9 {
       return "d12+5".to_string() + &bonus_string;
    }
-   if val == 11 {
+   if val == 10 {
       return "d12+6".to_string() + &bonus_string;
    }
-   if val == 12 {
+   if val == 11 {
       return "d12+7".to_string() + &bonus_string;
    }
-   if val == 13 {
+   if val == 12 {
       return "d12+8".to_string() + &bonus_string;
    }
-   if val == 14 {
+   if val == 13 {
       return "d12+9".to_string() + &bonus_string;
    }
-   if val == 15 {
+   if val == 14 {
       return "d12+10".to_string() + &bonus_string;
    }
-   if val == 16 {
+   if val == 15 {
       return "d12+11".to_string() + &bonus_string;
    }
-   if val == 17 {
+   if val == 16 {
       return "d12+12".to_string() + &bonus_string;
    }
 

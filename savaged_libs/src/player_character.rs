@@ -45,6 +45,7 @@ pub struct PlayerCharacter {
 
     #[wasm_bindgen(skip)]
     pub added_hindrances: Vec< Hindrance >,
+
     created_on:  DateTime<Utc>,
     updated_on:  DateTime<Utc>,
     deleted_on:  DateTime<Utc>,

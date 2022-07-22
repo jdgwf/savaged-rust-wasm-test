@@ -41,38 +41,38 @@ impl Attributes {
     #[wasm_bindgen(constructor)]
     pub fn new()->Attributes {
         Attributes{
-            selected_agility: 1,
+            selected_agility: 0,
             boosted_agility: 0,
             bonus_agility: 0,
 
-            selected_smarts: 1,
+            selected_smarts: 0,
             boosted_smarts: 0,
             bonus_smarts: 0,
 
-            selected_spirit: 1,
+            selected_spirit: 0,
             boosted_spirit: 0,
             bonus_spirit: 0,
 
-            selected_strength: 1,
+            selected_strength: 0,
             boosted_strength: 0,
             bonus_strength: 0,
 
-            selected_vigor: 1,
+            selected_vigor: 0,
             boosted_vigor: 0,
             bonus_vigor: 0,
 
 
-            min_agility: 1,
-            min_smarts: 1,
-            min_spirit: 1,
-            min_strength: 1,
-            min_vigor: 1,
+            min_agility: 0,
+            min_smarts: 0,
+            min_spirit: 0,
+            min_strength: 0,
+            min_vigor: 0,
 
-            max_agility: 5,
-            max_smarts: 5,
-            max_spirit: 5,
-            max_strength: 5,
-            max_vigor: 5,
+            max_agility: 4,
+            max_smarts: 4,
+            max_spirit: 4,
+            max_strength: 4,
+            max_vigor: 4,
         }
     }
 

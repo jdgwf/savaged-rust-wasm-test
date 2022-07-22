@@ -50,16 +50,31 @@ pub struct JSONChargenRaceAbility {
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct JSONCharacterExport {
+    #[serde(default)]
     pub id: u64,
+
+    #[serde(default)]
     pub name: String,
 
 
-    pub deleted: bool,
 
+    #[serde(default)]
     pub last_save_id: i64,
-    pub race_choices: JSONRaceOptions,
+    // pub race_choices: JSONRaceOptions,
 
     pub attribute_assignments: JSONBaseAttributes,
-    pub version: u64,
+    #[serde(default)]
+    pub version: f64,
+    #[serde(default)]
     pub session_id: u64,
+
+
+    #[serde(default)]
+    pub created_on: String,
+    #[serde(default)]
+    pub updated_on: String,
+    #[serde(default)]
+    pub deleted_on: String,
+    #[serde(default)]
+    pub deleted: bool,
 }

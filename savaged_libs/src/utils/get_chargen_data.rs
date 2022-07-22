@@ -1,3 +1,6 @@
+use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
 pub async fn get_chargen_data( api_key: String ) -> String {
 
     println!("Getting chargen data from savaged.us");

@@ -1,4 +1,6 @@
+use wasm_bindgen::prelude::*;
 
+#[wasm_bindgen]
 pub async fn get_user_saves( api_key: String ) -> String {
 
     println!("Getting user saves data from savaged.us");
@@ -19,3 +21,5 @@ pub async fn get_user_saves( api_key: String ) -> String {
 
     user_saves
 }
+
+

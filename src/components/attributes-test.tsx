@@ -1,5 +1,5 @@
 import * as React from 'react';
-import init, { PlayerCharacter } from 'savaged_libs';
+import init, { get_chargen_data, get_user_saves, PlayerCharacter } from 'savaged_libs';
 
 import "../scss/attributes-test.scss";
 import CharacterGeneratorBase from './character-generator/character-generator';
@@ -32,58 +32,59 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
         });
     }
 
+    _visibleCharactersOnly = (data: any ): boolean => {
+        if( data.type == "character" && !data.deleted ) {
+            return true;
+        }
+        return false;
+    }
+
     async componentDidMount() {
-
+      if(!this.pc) {
+      init().then( async () => {
       if(!this.chargenData) {
-      console.log("Fetching chargen data from savaged.us", new Date())
-      let urlencoded = new URLSearchParams({
-        "apikey": this.apiKey,
 
-      });
-      let chargenReq = await fetch(
-          "https://savaged.us/_api/chargen-data",
-          {
-            method: "post",
-            body: urlencoded,
-          }
-        );
+          console.log("Fetching chargen data from savaged.us", new Date())
 
-        this.chargenData = await chargenReq.json();
+          let chargenDataString = await get_chargen_data( this.apiKey )
 
-        console.log("Fetching chargen data complete from savaged.us", new Date())
+          this.chargenData = JSON.parse( chargenDataString )
+          console.log("Fetching chargen data complete from savaged.us", new Date())
+
       }
 
       if(!this.userSaves && this.apiKey ) {
         console.log("Fetching user saves from savaged.us", new Date())
-        let urlencoded = new URLSearchParams({
-          "apikey": this.apiKey,
+        // let urlencoded = new URLSearchParams({
+        //   "apikey": this.apiKey,
 
-        });
-        let chargenReq = await fetch(
-            "https://savaged.us/_api/auth/get-saves",
-            {
-              method: "post",
-              body: urlencoded,
-            }
-          );
+        // });
+        // let chargenReq = await fetch(
+        //     "https://savaged.us/_api/auth/get-saves",
+        //     {
+        //       method: "post",
+        //       body: urlencoded,
+        //     }
+        //   );
 
-          this.userSaves = await chargenReq.json();
+          let userSavesString= await get_user_saves( this.apiKey )
+          this.userSaves = JSON.parse(userSavesString);
 
           console.log("Fetching user saves complete from savaged.us", new Date(), this.userSaves.length)
         }
         if(!this.pc && this.chargenData) {
-            init().then(() => {
+
               let chargenDataString = JSON.stringify(this.chargenData);
               console.log("Creating work character", new Date() );
               this.pc = new PlayerCharacter( chargenDataString );
               this.pc.name = "Testing More!";
               this.pc.uuid = "67e55044-10b1-426f-9247-bb680e5fe0c8";
 
-              this.pc.set_attribute_selected_agility(2);
-              this.pc.set_attribute_selected_smarts(1);
-              this.pc.set_attribute_selected_spirit(2);
-              this.pc.set_attribute_selected_strength(2);
-              this.pc.set_attribute_selected_vigor(3);
+              this.pc.set_attribute_selected_agility(1);
+              this.pc.set_attribute_selected_smarts(0);
+              this.pc.set_attribute_selected_spirit(1);
+              this.pc.set_attribute_selected_strength(1);
+              this.pc.set_attribute_selected_vigor(2);
 
               console.log("# Available Books", this.pc.get_available_books_count() );
               console.log("get_available_books", JSON.parse( this.pc.get_available_books_json() ) );
@@ -134,9 +135,22 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
                   console.log("PC", pc.name );
               }
               console.log("End " + num_test_pcs + " PCs", new Date());
-            })
+
 
         }
+      })
+    }
+    }
+
+    loadPC = (
+        pcJSON: string
+    ) => {
+        this.pc?.reset();
+        console.log(pcJSON);
+        this.pc?.import_json( pcJSON );
+        this.setState({
+            updated: true,
+        })
     }
 
     updateCharacter = (
@@ -168,6 +182,18 @@ export default class AttributesTest extends React.Component<IAttributesTestProps
         onChange={this.setAPIKey}
     />
 </label>
+
+{this.userSaves && this.userSaves.filter(this._visibleCharactersOnly).length > 0 ? (
+    <ul>
+    {this.userSaves.filter(this._visibleCharactersOnly).map( (save: any, saveIndex: number) => {
+        return (
+            <li key={saveIndex}>
+                {save.name} <button onClick={(e) => this.loadPC(save.data)}>Load</button>
+            </li>
+        )
+    })}
+    </ul>
+) : null}
             </>
         )
     }
